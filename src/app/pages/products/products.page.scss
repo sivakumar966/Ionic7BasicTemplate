@@ -1,0 +1,60 @@
+.cardCenter {
+    display: flex;
+    justify-content: center;
+}
+.imageCard {
+    width: 180px;
+   
+    ion-button {
+        --border-radius: 0px;
+    }
+}
+.img-card {
+    height: 200px;
+    width: 180px;
+    object-fit: fill;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+ion-list {
+    ion-item {
+        ion-thumbnail {
+            height: 10vh;
+            width: 8vh;
+            img {
+                border-radius: 5px;
+                border: 1px solid var(--ion-color-light);
+                object-fit: fill;
+            }
+        }
+
+        .gst {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        ion-buttons {
+            ion-button {
+                --border-radius: 5px;
+            }
+        }
+    }
+}
+
+.contentHeight {
+    @media (min-width: 990px) {
+        height: 680px;
+        overflow-y: auto;
+    }
+}
+
+.contentHeader {
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

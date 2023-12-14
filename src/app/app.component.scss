@@ -1,3 +1,7 @@
+ion-menu-button {
+  color: var(--ion-color-primary);
+}
+
 ion-menu ion-content {
   --background: var(--ion-item-background, var(--ion-background-color, #fff));
 }
@@ -117,3 +121,37 @@ ion-note {
 ion-item.selected {
   --color: var(--ion-color-primary);
 }
+
+ion-header {
+  ion-title {
+    img {
+      padding-top: 5px;
+      height: 6vh;
+      width: 5vh;
+    }
+  }
+  ion-buttons {
+    ion-thumbnail {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        height: 4vh;
+        width: 4vh;
+        padding: 5px;
+        border: 2px solid var(--ion-color-primary); // rgba(var(--ion-color-primary-rgb), 0.14);
+        border-radius: 25px;
+      }
+    }
+  }
+}
+
+.userMenu {
+  ion-list-header {
+    ion-label {
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+  }
+}
+

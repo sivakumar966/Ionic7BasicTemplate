@@ -1,29 +1,77 @@
 <ion-app>
-  <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
-      <ion-content>
-        <ion-list id="inbox-list">
-          <ion-list-header>Inbox</ion-list-header>
-          <ion-note>hi&#64;ionicframework.com</ion-note>
 
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
-              <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
+  <ion-menu contentId="main-content" type="overlay">
+    <ion-content>
+      <ion-list id="inbox-list">
 
-        <ion-list id="labels-list">
-          <ion-list-header>Labels</ion-list-header>
+        <div [routerLink]="['/home']">
+          <ion-list-header>Dashboard</ion-list-header>
+          <ion-note>College Management System</ion-note>
+        </div>
 
-          <ion-item *ngFor="let label of labels" lines="none">
-            <ion-icon aria-hidden="true" slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
-            <ion-label>{{ label }}</ion-label>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item routerDirection="root" [routerLink]="['products']" lines="none" detail="false"
+            routerLinkActive="selected">
+            <!-- <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon> -->
+            <ion-label> Products </ion-label>
           </ion-item>
+        </ion-menu-toggle>
+
+
+      </ion-list>
+
+
+    </ion-content>
+  </ion-menu>
+
+  @if (isAuthenticated) {
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+
+      <ion-title mode="ios">
+        <img src="../assets/images/Logo.png" />
+      </ion-title>
+
+      <ion-buttons slot="end" id="userProfile">
+        <ion-thumbnail>
+          <img src="../assets/images/UserAvatar.png" />
+        </ion-thumbnail>
+      </ion-buttons>
+
+    </ion-toolbar>
+  </ion-header>
+
+
+  <ion-popover trigger="userProfile" triggerAction="click">
+    <ng-template>
+
+      <ion-content class="ion-padding">
+        <ion-list lines="none" class="userMenu">
+          <ion-list-header>
+            <ion-label>Sivakumar R</ion-label>
+          </ion-list-header>
+
+          <ion-item button (click)="Logout()">
+            <ion-icon slot="start" name="log-out-outline"></ion-icon>
+            <ion-label> Logout</ion-label>
+          </ion-item>
+
         </ion-list>
       </ion-content>
-    </ion-menu>
-    <ion-router-outlet id="main-content"></ion-router-outlet>
-  </ion-split-pane>
+    </ng-template>
+  </ion-popover>
+
+  }
+
+  <ion-content>
+    <ion-router-outlet id="main-content">
+
+    </ion-router-outlet>
+  </ion-content>
+
+
+
 </ion-app>

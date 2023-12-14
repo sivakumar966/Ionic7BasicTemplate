@@ -1,0 +1,52 @@
+<div class="container">
+
+  <ion-card class="logincard">
+
+    <div class="login-header  ion-text-center"> Login </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" autocomplete="off">
+
+      <ion-row class="ion-margin">
+        <ion-col size="12">
+          <ion-input type="text" label="Username" label-placement="floating" fill="outline" placeholder="Enter Username"
+            formControlName="username" [errorText]="getErrorText('username')">
+          </ion-input>
+
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-margin">
+        <ion-col size="12">
+          <ion-input type="password" label="Password" label-placement="floating" fill="outline" clear-on-edit="false"
+            placeholder="Enter Password" formControlName="password" [errorText]="getErrorText('password')"></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-margin">
+        <ion-col size="12">
+          <ion-button expand="block" type="submit" [disabled]="!loginForm.valid">
+            Login
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+
+    <div style="flex-grow: 1;">
+
+    </div>
+
+
+    <ion-row class="ion-margin ion-text-end">
+      <ion-col size="12">
+        <ion-text>
+          <a href="forgetpassword"> Forget password? </a>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+
+
+
+
+</div>

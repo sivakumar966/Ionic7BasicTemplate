@@ -43,11 +43,11 @@ export class TokenInterceptorService implements HttpInterceptor {
             return this.logoutAndRedirect(err);
           }
 
-          if (err instanceof HttpErrorResponse && err.status === 400) {
+          if (err.status === 400) {
             this.alertService.showAlert(err.error, 'FAILED');
           }
 
-          if (err instanceof HttpErrorResponse && err.status === 500) {
+          if (err.status === 500) {
             this.alertService.showAlert('There is an issue that occurs on the server. Please try after some time.', 'SERVER ERROR');
           }
           return throwError(() => err);

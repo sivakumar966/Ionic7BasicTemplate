@@ -16,12 +16,14 @@ import { AuthService } from './services/auth.service';
 export class AppComponent {
 
   isAuthenticated: boolean = false;
+  username = '';
 
   constructor(
     private router: Router,
     private authService: AuthService) {
     authService.isAuthenticated.subscribe(x => {
       this.isAuthenticated = x;
+      this.username = authService.username;
       if (!this.isAuthenticated) {
         this.router.navigate(['login'], { replaceUrl: true });
       }

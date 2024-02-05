@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiURL: 'http://localhost:5095'
+  apiURL: 'https://cms.foodiegoodie.in'
 };

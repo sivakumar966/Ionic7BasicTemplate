@@ -90,14 +90,16 @@ export class AuthService {
   }
 
   logout() {
-    const tmp_token = this.token;
-    this.token = '';
-    this.username = '';
-    this.roles = [];
-    localStorage.clear();
-    this.isAuthenticated.next(false);
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json', Authorization: `bearer ${tmp_token}` });
-    this.http.post(`${environment.apiURL}/api/accounts/logout`, '', { headers, responseType: 'json', }).subscribe();
+    if (this.token.length > 2) {
+      const tmp_token = this.token;
+      this.token = '';
+      this.username = '';
+      this.roles = [];
+      localStorage.clear();
+      this.isAuthenticated.next(false);
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json', Authorization: `bearer ${tmp_token}` });
+      this.http.post(`${environment.apiURL}/api/accounts/logout`, '', { headers, responseType: 'json', }).subscribe();
+    }
   }
 
 

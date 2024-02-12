@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Product } from '../interfaces/product';
 import { Observable, delay, map } from 'rxjs';
 import { category } from '../interfaces/category';
+import { CategoryWiseStock } from '../interfaces/stock';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,14 @@ export class ApiService {
       );
   }
 
+
+  GetPlaceholderImage(url: string = '') {
+    if (url === '') {
+      url = '../assets/images/product-placeholder.webp';
+    }
+    return this.http.get(url, { responseType: 'blob' });
+  }
+
   AddProduct(product: FormData) {
     return this.http.post(`${environment.apiURL}/api/products`, product, { responseType: 'json' });
   }
@@ -42,12 +51,14 @@ export class ApiService {
     return this.http.get<category[]>(`${environment.apiURL}/api/categories/`);
   }
 
-  GetPlaceholderImage(url: string = '') {
-    if (url === '') {
-      url = '../assets/images/product-placeholder.webp';
-    }
-    return this.http.get(url, { responseType: 'blob' });
+  GetCategoryWiseStocksAsync(): Observable<CategoryWiseStock[]> {
+    return this.http.get<CategoryWiseStock[]>(`${environment.apiURL}/api/kiosk/stocks`);
   }
+
+  UpdateStock(stock: any) {
+    return this.http.post(`${environment.apiURL}/api/kiosk/stocks`, stock, { responseType: 'json' });
+  }
+
 
 
 }

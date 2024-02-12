@@ -1,0 +1,39 @@
+.stocks {
+    h3 {
+        margin-left: 16px;
+    }
+    ion-card {
+        img {
+            width: 100%;
+            height: 12rem;
+            object-fit: fill;
+        }
+        ion-card-title {
+            span {
+                font-size: 0.9rem;
+                font-weight: 100;
+                opacity: 0.6;
+            }
+        }
+        ion-card-content {
+            div {
+                margin: 10px;
+            }
+            label {
+                display: inline-block;
+                width: 80px;
+            }
+
+            input {
+                display: inline-block;
+                height: 35px;
+                width: calc(100% - 85px);
+                padding-left: 10px;
+            }
+
+            input[type="text"]:disabled {
+                border-color: red;
+            }
+        }
+    }
+}

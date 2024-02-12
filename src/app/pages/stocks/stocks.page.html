@@ -22,25 +22,16 @@
           <ion-card-header>
             <ion-card-title>{{product.name }} <span> ₹{{ product.price }}</span> </ion-card-title>
           </ion-card-header>
-
-
-
           <ion-card-content>
-
             <div>
               <label>Stock</label>
               <input type="text" [disabled]="!product.isAvailable" [(ngModel)]="product.stock"
                 (keypress)="keyPressNumbers($event)" />
             </div>
-
-
-
-
             <div>
               <label> Availability </label>
               <ion-toggle color="primary" [(ngModel)]="product.isAvailable"></ion-toggle>
             </div>
-
             <ion-button expand="block"
               (click)="UpdateStock(product.id, product.isAvailable, product.stock)">Update</ion-button>
           </ion-card-content>

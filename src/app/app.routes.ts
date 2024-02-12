@@ -17,10 +17,15 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () => import('./pages/login/login.page').then(m => m.LoginPage),
     canActivate: [AutoLoginGuard]
-  }, 
+  },
   {
     path: 'products',
-    loadComponent: () => import('./pages/products/products.page').then( m => m.ProductsPage),
+    loadComponent: () => import('./pages/products/products.page').then(m => m.ProductsPage),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'stocks',
+    loadComponent: () => import('./pages/stocks/stocks.page').then(m => m.StocksPage),
     canActivate: [AuthGuard]
   },
 

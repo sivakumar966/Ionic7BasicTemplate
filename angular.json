@@ -40,8 +40,7 @@
             "browser": "src/main.ts"
           },
           "configurations": {
-            "production": {
-              "optimization": false,
+            "production": {           
               "budgets": [
                 {
                   "type": "initial",

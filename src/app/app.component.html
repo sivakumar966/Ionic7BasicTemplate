@@ -12,9 +12,14 @@
         <ion-menu-toggle auto-hide="false">
           <ion-item routerDirection="root" [routerLink]="['products']" lines="none" detail="false"
             routerLinkActive="selected">
-            <!-- <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon> -->
             <ion-label> Products </ion-label>
           </ion-item>
+
+          <ion-item routerDirection="root" [routerLink]="['stocks']" lines="none" detail="false"
+            routerLinkActive="selected">
+            <ion-label> Stocks </ion-label>
+          </ion-item>
+
         </ion-menu-toggle>
 
 

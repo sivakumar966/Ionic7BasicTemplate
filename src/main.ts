@@ -8,6 +8,7 @@ import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { TokenInterceptorService } from './app/services/token-interceptor.service';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 if (environment.production) {
   enableProdMode();
@@ -21,7 +22,8 @@ bootstrapApplication(AppComponent, {
     provideHttpClient(
       withInterceptorsFromDi()
     ),
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },
+    provideAnimations()
   ],
 });
 

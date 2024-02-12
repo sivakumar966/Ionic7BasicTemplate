@@ -5,6 +5,9 @@ import { Product } from '../interfaces/product';
 import { Observable, delay, map } from 'rxjs';
 import { category } from '../interfaces/category';
 import { CategoryWiseStock } from '../interfaces/stock';
+import { OrderReport } from '../interfaces/order-report';
+import { formatDate } from '@angular/common';
+
 
 @Injectable({
   providedIn: 'root'
@@ -59,6 +62,12 @@ export class ApiService {
     return this.http.post(`${environment.apiURL}/api/kiosk/stocks`, stock, { responseType: 'json' });
   }
 
+  GetOrderReport(fromDate: Date, toDate: Date, limit: number, skip: number) {
+    return this.http.get<OrderReport>(`${environment.apiURL}/api/kiosk/reports/orders?fromDate=${formatDate(fromDate, 'yyyy-MM-dd', 'en_US')}&toDate=${formatDate(toDate, 'yyyy-MM-dd', 'en_US')}&limit=${limit}&skip=${skip}`);
+  }
 
+  GetOrderReportForDownload(fromDate: Date, toDate: Date) {
+    return this.http.get(`${environment.apiURL}/api/kiosk/reports/download/orders?fromDate=${formatDate(fromDate, 'yyyy-MM-dd', 'en_US')}&toDate=${formatDate(toDate, 'yyyy-MM-dd', 'en_US')}`, { responseType: 'blob' });
+  }
 
 }

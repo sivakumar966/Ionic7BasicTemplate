@@ -1,13 +1,122 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>reports</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">reports</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-row class="ion-margin-top">
+    <ion-col size="12" class="ion-text-center">
+      <ion-text class="title"> Orders Report </ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12" sizeMd="10">
+
+      <ion-card class="order-card">
+        <p-table [value]="orders" dataKey="orderId" [paginator]="true" [(rows)]="limit" [lazy]="true"
+          (onLazyLoad)="loadOrders($event.first || 0)" [showCurrentPageReport]="true"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+          [rowsPerPageOptions]="[5, 10, 20]" [totalRecords]="totalRecords" [loading]="loading"
+          [tableStyle]="{'min-height': '75vh', 'min-width': '50rem'}">
+
+
+          <ng-template pTemplate="caption">
+
+            <ion-row class="ion-margin-top">
+              <ion-col size="12" sizeMd="3">
+                <label>From </label>
+                <p-calendar [(ngModel)]="fromDate" dateFormat="dd-M-yy" [showIcon]="true"></p-calendar>
+              </ion-col>
+
+              <ion-col size="12" sizeMd="3">
+                <label style="margin-left: 16px;">To </label> <p-calendar [(ngModel)]="toDate" dateFormat="dd-M-yy"
+                  [showIcon]="true"></p-calendar>
+              </ion-col>
+
+              <ion-col size="12" sizeMd="3">
+                <ion-button expand="block" (click)="loadOrders(0)"> Show</ion-button>
+              </ion-col>
+
+              <ion-col size="12" sizeMd="3">
+                <ion-button expand="block" (click)="DownloadReport()" > Download</ion-button>
+              </ion-col>
+
+            </ion-row>
+
+            <div class="flex">
+
+
+              <!-- <p-button label="Show" (onClick)="loadOrders(0)"
+                [style]="{ 'margin-left' : '16px' ,'width': '100px', 'height': '50px'}"></p-button>
+              <p-button label="Download"
+                [style]="{ 'margin-left' : '16px' ,'width': '100px', 'height': '50px'}"></p-button> -->
+            </div>
+          </ng-template>
+
+
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width: 5rem"></th>
+              <th>Date </th>
+              <th>Bill Number </th>
+              <th>Total </th>
+              <th>Status </th>
+              <th>PaymentType </th>
+              <th>Machine </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-order let-expanded="expanded">
+            <tr>
+              <td>
+                <button type="button" pButton pRipple [pRowToggler]="order"
+                  class="p-button-text p-button-rounded p-button-plain"
+                  [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+              </td>
+              <td>{{ order.orderDate | date: 'dd/MM/yyyy hh:mm a' }}</td>
+              <td>{{ order.billNumber }}</td>
+              <td>{{ order.total | currency:'INR'}}</td>
+              <td>{{ order.orderStatus }}</td>
+              <td>{{ order.paymentType }}</td>
+              <td>{{ order.orderBy }}</td>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="rowexpansion" let-order>
+            <tr>
+              <td colspan="7">
+                <div style="padding-left: 6rem; padding-right: 3rem;">
+                  <p-table [value]="order.orderItems" dataKey="orderId"
+                    [tableStyle]="{'min-height': '10vh', 'min-width': '30rem'}" styleClass="p-datatable-gridlines">
+                    <ng-template pTemplate="header">
+            <tr>
+              <th> Item </th>
+              <th> Price </th>
+              <th> Quantity </th>
+              <th> Amount </th>
+
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-item>
+            <tr [ngClass]="{'row-accessories': item.productName === 'Accessories'}">
+              <td>{{ item.productName }}</td>
+              <td>{{ item.price | currency:'INR' }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.amount | currency:'INR' }}</td>
+
+            </tr>
+          </ng-template>
+
+        </p-table>
+        </div>
+        </td>
+        </tr>
+        </ng-template>
+
+
+        </p-table>
+      </ion-card>
+
+
+    </ion-col>
+  </ion-row>
+
+
+
 </ion-content>
